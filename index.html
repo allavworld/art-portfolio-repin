@@ -39,8 +39,11 @@
   }
   .grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    grid-template-columns: repeat(3, 1fr);
     gap: 2rem;
+  }
+  @media (max-width: 720px) {
+    .grid { grid-template-columns: 1fr; }
   }
   figure {
     margin: 0;
@@ -124,10 +127,20 @@
 
 <main>
   <div class="grid" id="grid">
+    <!-- Row 1: oils -->
     <figure>
       <img src="images/oil_2026_minu.jpg" alt="Портрет, масляная живопись" loading="lazy">
       <figcaption><span>Портрет, масляная живопись</span><span class="year">2026</span></figcaption>
     </figure>
+    <figure>
+      <img src="images/oil_2025_olympia.jpg" alt="Пейзаж, живопись" loading="lazy">
+      <figcaption><span>Пейзаж, живопись</span><span class="year">2025</span></figcaption>
+    </figure>
+    <figure>
+      <img src="images/oil_2026_nude_study.jpg" alt="Обнажённая фигура, масляная живопись" loading="lazy">
+      <figcaption><span>Обнажённая фигура, масляная живопись</span><span class="year">2026</span></figcaption>
+    </figure>
+    <!-- Row 2: drawings -->
     <figure>
       <img src="images/graph_2026_still-life.jpg" alt="Натюрморт, рисунок" loading="lazy">
       <figcaption><span>Натюрморт, рисунок</span><span class="year">2026</span></figcaption>
@@ -137,16 +150,8 @@
       <figcaption><span>Гипсовая копия, рисунок</span><span class="year">2026</span></figcaption>
     </figure>
     <figure>
-      <img src="images/oil_2025_olympia.jpg" alt="Пейзаж, живопись" loading="lazy">
-      <figcaption><span>Пейзаж, живопись</span><span class="year">2025</span></figcaption>
-    </figure>
-    <figure>
       <img src="images/graph_2026_figure-study.jpg" alt="Обнажённая фигура, рисунок" loading="lazy">
       <figcaption><span>Обнажённая фигура, рисунок</span><span class="year">2026</span></figcaption>
-    </figure>
-    <figure>
-      <img src="images/oil_2026_nude_study.jpg" alt="Обнажённая фигура, масляная живопись" loading="lazy">
-      <figcaption><span>Обнажённая фигура, масляная живопись</span><span class="year">2026</span></figcaption>
     </figure>
   </div>
 </main>
