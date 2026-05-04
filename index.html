@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Алла Вихорева — Art Portfolio Репин</title>
+<style>
+  *,*::before,*::after { box-sizing: border-box; }
+  html { -webkit-font-smoothing: antialiased; }
+  body {
+    margin: 0;
+    font-family: ui-serif, Georgia, "Times New Roman", serif;
+    color: #1a1a1a;
+    background: #fafaf7;
+    line-height: 1.5;
+  }
+  header {
+    padding: 4rem 2rem 2.5rem;
+    text-align: center;
+    border-bottom: 1px solid #e8e6df;
+  }
+  header h1 {
+    margin: 0 0 .6rem;
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 400;
+    letter-spacing: .02em;
+  }
+  header p {
+    margin: 0;
+    color: #6b6b66;
+    font-size: 1rem;
+    font-style: italic;
+    letter-spacing: .04em;
+  }
+  main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 2rem;
+  }
+  figure {
+    margin: 0;
+    cursor: zoom-in;
+  }
+  figure img {
+    width: 100%;
+    height: auto;
+    display: block;
+    background: #efeee8;
+    transition: opacity .25s ease;
+  }
+  figure img:hover { opacity: .88; }
+  figcaption {
+    margin-top: .65rem;
+    font-size: .9rem;
+    color: #4a4a45;
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+  figcaption .year { color: #8c8c85; font-variant-numeric: tabular-nums; }
+
+  footer {
+    text-align: center;
+    padding: 3rem 1.5rem 4rem;
+    color: #8c8c85;
+    font-size: .85rem;
+  }
+
+  /* Lightbox */
+  .lightbox {
+    position: fixed; inset: 0;
+    background: rgba(20, 20, 18, .94);
+    display: none;
+    z-index: 100;
+    cursor: zoom-out;
+    overflow: auto;
+  }
+  .lightbox.open { display: flex; align-items: center; justify-content: center; }
+  .lightbox img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    cursor: zoom-in;
+    box-shadow: 0 20px 60px rgba(0,0,0,.5);
+  }
+  .lightbox.actual { align-items: flex-start; justify-content: flex-start; padding: 2rem; }
+  .lightbox.actual img {
+    max-width: none; max-height: none;
+    width: auto; height: auto;
+    object-fit: none;
+    cursor: zoom-out;
+    margin: auto;
+  }
+  .lightbox .hint {
+    position: fixed;
+    bottom: 1.25rem;
+    left: 50%;
+    transform: translateX(-50%);
+    color: rgba(255,255,255,.55);
+    font-size: .8rem;
+    font-style: italic;
+    pointer-events: none;
+    user-select: none;
+    letter-spacing: .03em;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Алла Вихорева</h1>
+  <p>Art Portfolio — Репин</p>
+</header>
+
+<main>
+  <div class="grid" id="grid">
+    <figure>
+      <img src="images/marcus_drawing_2026.jpg" alt="Marcus Aurelius (cast study)" loading="lazy">
+      <figcaption><span>Marcus Aurelius</span><span class="year">2026</span></figcaption>
+    </figure>
+    <figure>
+      <img src="images/graph_2026_figure-study.jpg" alt="Figure Study, graphite" loading="lazy">
+      <figcaption><span>Figure Study</span><span class="year">2026</span></figcaption>
+    </figure>
+    <figure>
+      <img src="images/graph_2026_still-life.jpg" alt="Still Life, graphite" loading="lazy">
+      <figcaption><span>Still Life</span><span class="year">2026</span></figcaption>
+    </figure>
+    <figure>
+      <img src="images/oil_2026_nude_study.jpg" alt="Nude Study, oil" loading="lazy">
+      <figcaption><span>Nude Study</span><span class="year">2026</span></figcaption>
+    </figure>
+    <figure>
+      <img src="images/oil_2025_olympia.jpg" alt="Olympia, oil (after Manet)" loading="lazy">
+      <figcaption><span>Olympia</span><span class="year">2025</span></figcaption>
+    </figure>
+    <figure>
+      <img src="images/img_4195.jpg" alt="Untitled" loading="lazy">
+      <figcaption><span>Untitled</span><span class="year">—</span></figcaption>
+    </figure>
+  </div>
+</main>
+
+<footer>© Алла Вихорева</footer>
+
+<div class="lightbox" id="lightbox" aria-hidden="true">
+  <img src="" alt="">
+  <span class="hint" id="lbHint">click image to view at actual size · esc to close</span>
+</div>
+
+<script>
+  const grid = document.getElementById('grid');
+  const lb = document.getElementById('lightbox');
+  const lbImg = lb.querySelector('img');
+  const lbHint = document.getElementById('lbHint');
+
+  function openLightbox(src, alt) {
+    lbImg.src = src;
+    lbImg.alt = alt;
+    lb.classList.add('open');
+    lb.classList.remove('actual');
+    lb.setAttribute('aria-hidden', 'false');
+    lb.scrollTo(0, 0);
+    lbHint.textContent = 'click image to view at actual size · esc to close';
+  }
+  function closeLightbox() {
+    lb.classList.remove('open', 'actual');
+    lb.setAttribute('aria-hidden', 'true');
+    lbImg.src = '';
+  }
+
+  grid.addEventListener('click', e => {
+    const fig = e.target.closest('figure');
+    if (!fig) return;
+    const img = fig.querySelector('img');
+    openLightbox(img.src, img.alt);
+  });
+
+  lb.addEventListener('click', e => {
+    if (e.target === lbImg) {
+      lb.classList.toggle('actual');
+      lb.scrollTo(0, 0);
+      lbHint.textContent = lb.classList.contains('actual')
+        ? 'click image to fit · esc to close'
+        : 'click image to view at actual size · esc to close';
+    } else {
+      closeLightbox();
+    }
+  });
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && lb.classList.contains('open')) closeLightbox();
+  });
+</script>
+
+</body>
+</html>
