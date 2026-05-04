@@ -120,28 +120,28 @@
 <main>
   <div class="grid" id="grid">
     <figure>
-      <img src="images/marcus_drawing_2026.jpg" alt="Marcus Aurelius (cast study)" loading="lazy">
-      <figcaption><span>Marcus Aurelius</span><span class="year">2026</span></figcaption>
+      <img src="images/graph_2026_cast.jpg" alt="Гипс" loading="lazy">
+      <figcaption><span>Гипс</span><span class="year">2026</span></figcaption>
     </figure>
     <figure>
-      <img src="images/graph_2026_figure-study.jpg" alt="Figure Study, graphite" loading="lazy">
-      <figcaption><span>Figure Study</span><span class="year">2026</span></figcaption>
+      <img src="images/graph_2026_figure-study.jpg" alt="Этюд фигуры" loading="lazy">
+      <figcaption><span>Этюд фигуры</span><span class="year">2026</span></figcaption>
     </figure>
     <figure>
-      <img src="images/graph_2026_still-life.jpg" alt="Still Life, graphite" loading="lazy">
-      <figcaption><span>Still Life</span><span class="year">2026</span></figcaption>
+      <img src="images/graph_2026_still-life.jpg" alt="Натюрморт" loading="lazy">
+      <figcaption><span>Натюрморт</span><span class="year">2026</span></figcaption>
     </figure>
     <figure>
-      <img src="images/oil_2026_nude_study.jpg" alt="Nude Study, oil" loading="lazy">
-      <figcaption><span>Nude Study</span><span class="year">2026</span></figcaption>
+      <img src="images/oil_2026_nude_study.jpg" alt="Обнажённая натура" loading="lazy">
+      <figcaption><span>Обнажённая натура</span><span class="year">2026</span></figcaption>
     </figure>
     <figure>
-      <img src="images/oil_2025_olympia.jpg" alt="Olympia, oil (after Manet)" loading="lazy">
-      <figcaption><span>Olympia</span><span class="year">2025</span></figcaption>
+      <img src="images/oil_2026_minu.jpg" alt="Мину" loading="lazy">
+      <figcaption><span>Мину</span><span class="year">2026</span></figcaption>
     </figure>
     <figure>
-      <img src="images/img_4195.jpg" alt="Untitled" loading="lazy">
-      <figcaption><span>Untitled</span><span class="year">—</span></figcaption>
+      <img src="images/oil_2025_olympia.jpg" alt="Олимпия" loading="lazy">
+      <figcaption><span>Олимпия</span><span class="year">2025</span></figcaption>
     </figure>
   </div>
 </main>
@@ -150,7 +150,7 @@
 
 <div class="lightbox" id="lightbox" aria-hidden="true">
   <img src="" alt="">
-  <span class="hint" id="lbHint">click image to view at actual size · esc to close</span>
+  <span class="hint" id="lbHint">нажмите на картинку для увеличения · esc — закрыть</span>
 </div>
 
 <script>
@@ -166,7 +166,7 @@
     lb.classList.remove('actual');
     lb.setAttribute('aria-hidden', 'false');
     lb.scrollTo(0, 0);
-    lbHint.textContent = 'click image to view at actual size · esc to close';
+    lbHint.textContent = 'нажмите на картинку для увеличения · esc — закрыть';
   }
   function closeLightbox() {
     lb.classList.remove('open', 'actual');
@@ -186,8 +186,8 @@
       lb.classList.toggle('actual');
       lb.scrollTo(0, 0);
       lbHint.textContent = lb.classList.contains('actual')
-        ? 'click image to fit · esc to close'
-        : 'click image to view at actual size · esc to close';
+        ? 'нажмите на картинку чтобы вписать · esc — закрыть'
+        : 'нажмите на картинку для увеличения · esc — закрыть';
     } else {
       closeLightbox();
     }
