@@ -39,11 +39,14 @@
   }
   .grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
     gap: 2rem;
   }
+  .grid.oils { grid-template-columns: repeat(3, 1fr); }
+  .grid.drawings { grid-template-columns: repeat(4, 1fr); margin-top: 2rem; gap: 1.5rem; }
+  .grid.drawings figcaption { font-size: .82rem; }
+  .grid.drawings figcaption .year { font-size: .75rem; }
   @media (max-width: 720px) {
-    .grid { grid-template-columns: 1fr; }
+    .grid.oils, .grid.drawings { grid-template-columns: 1fr; }
   }
   figure {
     margin: 0;
@@ -126,8 +129,7 @@
 </header>
 
 <main>
-  <div class="grid" id="grid">
-    <!-- Row 1: oils -->
+  <div class="grid oils">
     <figure>
       <img src="images/oil_2026_minu.jpg" alt="Портрет, масляная живопись" loading="lazy">
       <figcaption><span>Портрет, масляная живопись</span><span class="year">2026</span></figcaption>
@@ -140,7 +142,8 @@
       <img src="images/oil_2026_nude_study.jpg" alt="Обнажённая фигура, масляная живопись" loading="lazy">
       <figcaption><span>Обнажённая фигура, масляная живопись</span><span class="year">2026</span></figcaption>
     </figure>
-    <!-- Row 2: drawings -->
+  </div>
+  <div class="grid drawings">
     <figure>
       <img src="images/graph_2025_portrait.jpg" alt="Портрет, рисунок" loading="lazy">
       <figcaption><span>Портрет, рисунок</span><span class="year">2025</span></figcaption>
@@ -168,7 +171,7 @@
 </div>
 
 <script>
-  const grid = document.getElementById('grid');
+  const grid = document.querySelector('main');
   const lb = document.getElementById('lightbox');
   const lbImg = lb.querySelector('img');
   const lbHint = document.getElementById('lbHint');
